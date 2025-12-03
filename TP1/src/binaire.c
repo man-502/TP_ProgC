@@ -1,30 +1,11 @@
-#include <stdio.h>
+Affichage d'un nombre en format binaire
 
-void afficher_binaire(int n) {
-    int i;
-    int nb_bits = sizeof(int) * 8; // nombre de bits dans un int
-    int debut = 0; // pour ignorer les zéros en tête
+Écrivez un programme nommé binaire.c dans la fonction main() qui utilise une boucle for pour afficher une variable de type int en format binaire. Il est important de noter que la fonction printf en C n'a pas de code de conversion dédié pour afficher un nombre en notation binaire, contrairement à 'x' pour l'hexadécimal ou 'o' pour l'octal.
 
-    for (i = nb_bits - 1; i >= 0; i--) {
-        int bit = (n >> i) & 1; // extraire le ième bit
-        if (bit) debut = 1; // commencer à afficher dès le premier 1
-        if (debut) {
-            printf("%d", bit);
-        }
-    }
+Pour résoudre ce problème, vous devrez développer votre propre code pour convertir un nombre entier en sa représentation binaire. Utilisez la division par 2 et le reste de la division (%) pour obtenir chaque chiffre binaire. Affichez ensuite ces chiffres de manière appropriée pour obtenir la représentation binaire complète du nombre.
 
-    if (!debut) // si n == 0
-        printf("0");
+Testez votre code en utilisant les cinq nombres suivants : 0, 4096, 65536, 65535, 1024, et affichez leur représentation binaire correspondante.
 
-    printf("\n");
-}
+Suggestions pour le programme :
 
-int main(void) {
-    int nombres[] = {0, 4096, 65536, 65535, 1024};
-    int taille = sizeof(nombres)/sizeof(nombres[0]);
-    for (int i = 0; i < taille; i++) {
-        printf("%d en binaire : ", nombres[i]);
-        afficher_binaire(nombres[i]);
-    }
-    return 0;
-}
+Pensez à utiliser les opérateurs pour la manipulation de bits (&, | ou ~)
