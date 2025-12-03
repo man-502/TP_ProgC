@@ -25,4 +25,9 @@ int main() {
 
     printf("Taille de double : %zu octets\n\n", sizeof(double));
 
-    printf("Taille
+    printf("Taille de long double : %zu octets\n\n", sizeof(long double));
+
+    return 0;
+}
+
+
