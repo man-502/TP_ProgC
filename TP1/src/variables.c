@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <limits.h>
+#include <float.h>
 
 int main() {
     /* Types char */
@@ -48,3 +50,4 @@ int main() {
 
     return 0;
 }
+
