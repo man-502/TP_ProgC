@@ -27,9 +27,29 @@ int main() {
     signed long long int slli = -1000000000LL;
     unsigned long long int ulli = 2000000000ULL;
 
-    /* Types flottants (pas de signed/unsigned) */
+    /* Types flottants */
     float f = 3.14f;
-    double d = 2.7182
+    double d = 2.718281828;
+    long double ld = 1.23456789012345L;
+
+    /* Affichage */
+    printf("char = %c\n", c);
+    printf("signed char = %d\n", sc);
+    printf("unsigned char = %u\n\n", uc);
+
+    printf("short = %d\n", s);
+    printf("signed short = %d\n", ss);
+    printf("unsigned short = %u\n\n", us);
+
+    printf("int = %d\n", i);
+    printf("signed int = %d\n", si);
+    printf("unsigned int = %u\n\n", ui);
+
+    printf("long int = %ld\n", li);
+    printf("signed long int = %ld\n", sli);
+    printf("unsigned long int = %lu\n
+
+
 
 
 
