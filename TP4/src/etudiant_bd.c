@@ -69,7 +69,17 @@ int main(int argc, char *argv[]) {
 
         // Écrire dans le fichier
         ecrire_dans_fichier("etudiant.txt", ligne);
-        printf("Étudiant a
+        printf("Étudiant ajouté : %s %s\n", e.nom, e.prenom);
+    } 
+    else {
+        printf("Commande invalide. Utilisez 'lire' ou 'ecrire'.\n");
+        return 1;
+    }
+
+    return 0;
+}
+
+
 
 
 
