@@ -16,12 +16,7 @@ int main() {
         printf("3. Quitter\n");
         printf("Votre choix : ");
 
-        if (!fgets(ligne, sizeof(ligne), stdin)) {
-            printf("Erreur de lecture.\n");
-            continue;
-        }
-
-        // Conversion sûre en entier
+        if (!fgets(ligne, sizeof(ligne), stdin)) continue;
         if (sscanf(ligne, "%d", &choix) != 1) {
             printf("Entrée invalide ! Veuillez saisir un nombre.\n\n");
             continue;
@@ -57,6 +52,7 @@ int main() {
 
     return 0;
 }
+
 
 
 
