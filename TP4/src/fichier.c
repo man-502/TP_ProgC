@@ -14,7 +14,6 @@ void lire_fichier(const char *nom_de_fichier) {
         printf("%s", ligne);
     }
     printf("\n");
-
     fclose(f);
 }
 
@@ -27,9 +26,9 @@ void ecrire_dans_fichier(const char *nom_de_fichier, const char *message) {
 
     fprintf(f, "%s\n", message);
     fclose(f);
-
     printf("Le message a été écrit dans le fichier '%s'.\n", nom_de_fichier);
 }
+
 
 
 
