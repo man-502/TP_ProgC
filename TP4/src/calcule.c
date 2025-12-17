@@ -1,28 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
-// Fonctions de calcul
-int somme(int a, int b) { return a + b; }
-int difference(int a, int b) { return a - b; }
-int produit(int a, int b) { return a * b; }
-int quotient(int a, int b) { 
-    if (b == 0) {
-        printf("Erreur : division par zéro\n");
-        return 0;
-    }
-    return a / b; 
-}
-int modulo(int a, int b) { 
-    if (b == 0) {
-        printf("Erreur : modulo par zéro\n");
-        return 0;
-    }
-    return a % b; 
-}
-int et(int a, int b) { return a & b; }
-int ou(int a, int b) { return a | b; }
-int negation(int a) { return ~a; }
+#include "operator.h" // Assure-toi que operator.c est compilé avec
 
 int main(int argc, char *argv[]) {
     if (argc < 3) {
@@ -36,7 +14,7 @@ int main(int argc, char *argv[]) {
     int num2 = 0;
     int resultat = 0;
 
-    // Pour les opérations binaires, on a besoin d'un 2e argument
+    // Les opérations binaires nécessitent num2
     if (op != '~') {
         if (argc < 4) {
             printf("Erreur : il faut deux nombres pour cette opération\n");
@@ -56,9 +34,17 @@ int main(int argc, char *argv[]) {
             resultat = produit(num1, num2);
             break;
         case '/':
+            if (num2 == 0) {
+                printf("Erreur : division par zéro\n");
+                return 1;
+            }
             resultat = quotient(num1, num2);
             break;
         case '%':
+            if (num2 == 0) {
+                printf("Erreur : modulo par zéro\n");
+                return 1;
+            }
             resultat = modulo(num1, num2);
             break;
         case '&':
@@ -78,3 +64,5 @@ int main(int argc, char *argv[]) {
     printf("Résultat : %d\n", resultat);
     return 0;
 }
+
+
