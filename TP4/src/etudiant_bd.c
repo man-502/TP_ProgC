@@ -10,7 +10,7 @@ typedef struct {
     float note2;
 } Etudiant;
 
-// Fonction pour écrire une ligne dans un fichier
+// Écrire une ligne dans un fichier
 void ecrire_dans_fichier(const char *nom_de_fichier, const char *message) {
     FILE *f = fopen(nom_de_fichier, "a"); // ajouter à la fin
     if (!f) {
@@ -21,13 +21,14 @@ void ecrire_dans_fichier(const char *nom_de_fichier, const char *message) {
     fclose(f);
 }
 
-// Fonction pour lire et afficher un fichier
+// Lire et afficher un fichier
 void lire_fichier(const char *nom_de_fichier) {
     FILE *f = fopen(nom_de_fichier, "r");
     if (!f) {
         printf("Erreur : impossible d'ouvrir le fichier '%s'.\n", nom_de_fichier);
         return;
     }
+
     char ligne[512];
     while (fgets(ligne, sizeof(ligne), f)) {
         printf("%s", ligne);
@@ -55,17 +56,22 @@ int main(int argc, char *argv[]) {
         Etudiant e;
         char ligne[512];
 
+        // Copier les arguments dans la structure
         snprintf(e.nom, sizeof(e.nom), "%s", argv[2]);
         snprintf(e.prenom, sizeof(e.prenom), "%s", argv[3]);
         snprintf(e.adresse, sizeof(e.adresse), "%s", argv[4]);
         e.note1 = atof(argv[5]);
         e.note2 = atof(argv[6]);
 
+        // Formater la ligne à écrire
         snprintf(ligne, sizeof(ligne), "%s;%s;%s;%.2f;%.2f",
                  e.nom, e.prenom, e.adresse, e.note1, e.note2);
 
+        // Écrire dans le fichier
         ecrire_dans_fichier("etudiant.txt", ligne);
-        printf("Étudiant ajouté : %s %s\n", e.nom, e.pre
+        printf("Étudiant a
+
+
 
 
 
