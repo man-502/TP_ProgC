@@ -32,3 +32,4 @@ void ecrire_dans_fichier(const char *nom_de_fichier, const char *message) {
 
     printf("Le message a été écrit dans le fichier %s.\n", nom_de_fichier);
 }
+
