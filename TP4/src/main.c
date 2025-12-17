@@ -1,19 +1,24 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "operator.h"
 
-int main() {
+int main(int argc, char *argv[]) {
     int num1, num2, resultat;
     char op;
 
-    /* Saisie des valeurs */
-    printf("Entrez num1 : ");
-    scanf("%d", &num1);
-    printf("Entrez num2 : ");
-    scanf("%d", &num2);
-    printf("Entrez l'opérateur (+, -, *, /, %%, &, |, ~) : ");
-    scanf(" %c", &op);  // espace pour consommer un éventuel '\n'
+    // Vérification des arguments
+    if (argc < 4) {
+        printf("Usage : %s num1 num2 operateur\n", argv[0]);
+        printf("Exemple : %s 10 5 +\n", argv[0]);
+        return 1;
+    }
 
-    /* Sélection de l'opération */
+    // Conversion des arguments
+    num1 = atoi(argv[1]);
+    num2 = atoi(argv[2]);
+    op = argv[3][0]; // le premier caractère du troisième argument
+
+    // Sélection de l'opération
     switch(op) {
         case '+':
             resultat = somme(num1, num2);
