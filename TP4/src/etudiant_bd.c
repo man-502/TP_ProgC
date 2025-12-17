@@ -1,52 +1,72 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include "etudiant.h"
-#include "fichier.h"
 
-#define NB_ETUDIANTS 5
+typedef struct {
+    char nom[100];
+    char prenom[100];
+    char adresse[100];
+    float note1;
+    float note2;
+} Etudiant;
 
-int main() {
-    Etudiant etudiants[NB_ETUDIANTS];
+// Fonction pour écrire une ligne dans un fichier
+void ecrire_dans_fichier(const char *nom_de_fichier, const char *message) {
+    FILE *f = fopen(nom_de_fichier, "a"); // ajouter à la fin
+    if (!f) {
+        printf("Erreur : impossible d'ouvrir le fichier '%s'.\n", nom_de_fichier);
+        return;
+    }
+    fprintf(f, "%s\n", message);
+    fclose(f);
+}
+
+// Fonction pour lire et afficher un fichier
+void lire_fichier(const char *nom_de_fichier) {
+    FILE *f = fopen(nom_de_fichier, "r");
+    if (!f) {
+        printf("Erreur : impossible d'ouvrir le fichier '%s'.\n", nom_de_fichier);
+        return;
+    }
     char ligne[512];
+    while (fgets(ligne, sizeof(ligne), f)) {
+        printf("%s", ligne);
+    }
+    fclose(f);
+}
 
-    for (int i = 0; i < NB_ETUDIANTS; i++) {
-        printf("Entrez les détails de l'étudiant.e %d :\n", i+1);
-
-        printf("Nom : ");
-        scanf(" %[^\n]", etudiants[i].nom);
-
-        printf("Prénom : ");
-        scanf(" %[^\n]", etudiants[i].prenom);
-
-        printf("Adresse : ");
-        scanf(" %[^\n]", etudiants[i].adresse);
-
-        printf("Note 1 : ");
-        scanf("%f", &etudiants[i].note1);
-
-        printf("Note 2 : ");
-        scanf("%f", &etudiants[i].note2);
-
-        // Formater une ligne pour le fichier
-        snprintf(ligne, sizeof(ligne), "%s;%s;%s;%.2f;%.2f",
-                 etudiants[i].nom,
-                 etudiants[i].prenom,
-                 etudiants[i].adresse,
-                 etudiants[i].note1,
-                 etudiants[i].note2);
-
-        // Écrire la ligne dans le fichier
-        ecrire_dans_fichier("etudiant.txt", ligne);
-        printf("\n");
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        printf("Usage :\n");
+        printf("  %s lire\n", argv[0]);
+        printf("  %s ecrire Nom Prenom Adresse Note1 Note2\n", argv[0]);
+        return 1;
     }
 
-    printf("Les détails des étudiants ont été enregistrés dans le fichier etudiant.txt.\n");
+    if (strcmp(argv[1], "lire") == 0) {
+        lire_fichier("etudiant.txt");
+    } 
+    else if (strcmp(argv[1], "ecrire") == 0) {
+        if (argc != 7) {
+            printf("Erreur : arguments manquants pour ajouter un étudiant\n");
+            return 1;
+        }
 
-    // Optionnel : afficher le contenu du fichier pour vérification
-    printf("\nContenu actuel du fichier :\n");
-    lire_fichier("etudiant.txt");
+        Etudiant e;
+        char ligne[512];
 
-    return 0;
-}
+        snprintf(e.nom, sizeof(e.nom), "%s", argv[2]);
+        snprintf(e.prenom, sizeof(e.prenom), "%s", argv[3]);
+        snprintf(e.adresse, sizeof(e.adresse), "%s", argv[4]);
+        e.note1 = atof(argv[5]);
+        e.note2 = atof(argv[6]);
+
+        snprintf(ligne, sizeof(ligne), "%s;%s;%s;%.2f;%.2f",
+                 e.nom, e.prenom, e.adresse, e.note1, e.note2);
+
+        ecrire_dans_fichier("etudiant.txt", ligne);
+        printf("Étudiant ajouté : %s %s\n", e.nom, e.pre
+
+
 
 
